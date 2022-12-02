@@ -4,8 +4,10 @@ import moment from 'moment';
 import demoImage from './images/logo192.png'
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import {useGetCryptosQuery} from '../services/cryptoApi'
+import Loader from './Loader';
 const { Option } = Select; 
 const { Text, Title } = Typography;
+
 
 
 
@@ -14,7 +16,7 @@ const News = ({ simplified }) => {
   const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory, count: simplified ? 6 : 13 });
   const {data} = useGetCryptosQuery(100);
 
-  if (!cryptoNews?.value) return 'Loading...';
+  if (!cryptoNews?.value) return <Loader/>;
   return (
 
     <>
@@ -68,7 +70,7 @@ const News = ({ simplified }) => {
 
             </Card>
           </Col>
-        ))}
+        ))} 
       </Row>
     </>
 
